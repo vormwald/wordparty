@@ -58,6 +58,12 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # allow binding.irb to debug
+  gem "irb"
+  #
+  # annotate models / routes etc
+  gem "annotate"
 end
 
 
