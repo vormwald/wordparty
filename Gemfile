@@ -65,5 +65,3 @@ group :development do
   # annotate models / routes etc
   gem "annotate"
 end
-
-
