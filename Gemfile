@@ -65,3 +65,5 @@ group :development do
   # annotate models / routes etc
   gem "annotate"
 end
+
+gem "devise", "~> 4.9"
