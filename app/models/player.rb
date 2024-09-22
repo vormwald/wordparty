@@ -21,6 +21,7 @@
 #
 class Player < ApplicationRecord
   belongs_to :user, optional: true
+  belongs_to :game
 
   validates :name, presence: true
   validates :session_token, uniqueness: true, allow_nil: true

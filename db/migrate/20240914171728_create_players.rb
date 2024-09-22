@@ -5,6 +5,7 @@ class CreatePlayers < ActiveRecord::Migration[7.2]
       t.string :avatar_url
       t.string :session_token
       t.references :user, foreign_key: true, null: true
+      t.references :game, foreign_key: true, null: true
 
       t.timestamps
     end

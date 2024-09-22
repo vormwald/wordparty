@@ -1,0 +1,24 @@
+<h1 class="text-2xl font-bold mb-4">My Games</h1>
+
+<% if @games.any? %>
+  <ul class="space-y-4">
+    <% @games.each do |game| %>
+      <li class="bg-white shadow rounded-lg p-4">
+        <%= link_to game.name, game_path(game), class: "text-blue-600 hover:underline" %>
+        <span class="ml-2 text-gray-500"><%= game.party_type.capitalize %></span>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <div class="bg-gray-100 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center">
+    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+    </svg>
+    <h3 class="mt-2 text-sm font-medium text-gray-900">No games</h3>
+    <p class="mt-1 text-sm text-gray-500">Get started by creating a new game.</p>
+  </div>
+<% end %>
+
+<div class="mt-8">
+  <%= link_to "New Game", new_game_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+</div>

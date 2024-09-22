@@ -1,0 +1,37 @@
+<h1 class="text-2xl font-bold mb-4">New Game</h1>
+
+<%= form_with(model: @game, local: true, class: "space-y-4") do |form| %>
+  <div>
+    <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div>
+    <%= form.label :party_type, class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :party_type, options_for_select([['Solo', 'solo'], ['Multiplayer', 'multiplayer']]), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div>
+    <%= form.label :num_letters, "Number of Letters", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :num_letters, in: 3..10, step: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div>
+    <%= form.label :num_rounds, "Number of Rounds", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.number_field :num_rounds, in: 1..10, step: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+  </div>
+
+  <div>
+    <%= form.label :round_time_limit, "Round Time Limit (seconds)", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.select :round_time_limit, 
+                    options_for_select([
+                      ['1 minute', 60],
+                      ['2 minutes', 120],
+                      ['5 minutes', 300]
+                    ]),
+                    {}, 
+                    class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+  </div>
+
+  <%= form.submit "Create Game", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+<% end %>
