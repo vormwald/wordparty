@@ -1,24 +1,51 @@
-<h1 class="text-2xl font-bold mb-4">My Games</h1>
+<div class="sm:flex sm:items-center">
+  <div class="sm:flex-auto">
+    <h1 class="text-base font-semibold leading-6 text-gray-900">My Games</h1>
+    <p class="mt-2 text-sm text-gray-700">A list of all your games including their name and type.</p>
+  </div>
+  <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+    <%= link_to "New Game", new_game_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+</div>
 
 <% if @games.any? %>
-  <ul class="space-y-4">
-    <% @games.each do |game| %>
-      <li class="bg-white shadow rounded-lg p-4">
-        <%= link_to game.name, game_path(game), class: "text-blue-600 hover:underline" %>
-        <span class="ml-2 text-gray-500"><%= game.party_type.capitalize %></span>
-      </li>
-    <% end %>
-  </ul>
+  <div class="mt-8 flow-root">
+    <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Type</th>
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
+                <span class="sr-only">Actions</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <% @games.each do |game| %>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0"><%= game.name %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= game.party_type.capitalize %></td>
+                <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+                  <%= link_to "View", game_path(game), class: "text-indigo-600 hover:text-indigo-900" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 <% else %>
-  <div class="bg-gray-100 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center">
-    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+  <div class="text-center mt-8">
+    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <path vector-effect="non-scaling-stroke" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m-9 1V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
     </svg>
-    <h3 class="mt-2 text-sm font-medium text-gray-900">No games</h3>
+    <h3 class="mt-2 text-sm font-semibold text-gray-900">No games</h3>
     <p class="mt-1 text-sm text-gray-500">Get started by creating a new game.</p>
+    <div class="mt-6">
+      <%= link_to "New Game", new_game_path, class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
   </div>
 <% end %>
-
-<div class="mt-8">
-  <%= link_to "New Game", new_game_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-</div>

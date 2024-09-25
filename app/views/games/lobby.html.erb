@@ -1,14 +1,37 @@
-<h1 class="text-2xl font-bold mb-4"><%= @game.name %> Lobby</h1>
-
-<div class="bg-gray-100 p-4 rounded-lg mb-4">
-  <h2 class="text-lg font-semibold mb-2">Invite Code</h2>
-  <p class="text-2xl font-mono"><%= @game.invite_code %></p>
+<div class="sm:flex sm:items-center">
+  <div class="sm:flex-auto">
+    <h1 class="text-base font-semibold leading-6 text-gray-900"><%= @game.name %> Lobby</h1>
+    <p class="mt-2 text-sm text-gray-700">Waiting for players to join the game.</p>
+  </div>
 </div>
 
-<h2 class="text-lg font-semibold mb-2">Players</h2>
-<ul class="space-y-2">
-  <li class="bg-white shadow rounded p-2">
-    <%= current_user.email %> (Host)
-  </li>
-  <!-- Add more players here as they join -->
-</ul>
+<div class="mt-8 bg-white shadow sm:rounded-lg">
+  <div class="px-4 py-5 sm:p-6">
+    <h3 class="text-base font-semibold leading-6 text-gray-900">Invite Code</h3>
+    <div class="mt-2 max-w-xl text-sm text-gray-500">
+      <p>Share this code with other players to join the game:</p>
+    </div>
+    <div class="mt-5">
+      <p class="text-3xl font-mono font-bold text-indigo-600"><%= @game.invite_code %></p>
+    </div>
+  </div>
+</div>
+
+<div class="mt-8">
+  <h2 class="text-base font-semibold leading-6 text-gray-900">Players</h2>
+  <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+    <li class="col-span-1 flex rounded-md shadow-sm">
+      <div class="flex flex-1 items-center justify-between truncate rounded-md border border-gray-200 bg-white">
+        <div class="flex-1 truncate px-4 py-2 text-sm">
+          <p class="font-medium text-gray-900 hover:text-gray-600"><%= current_user.email %></p>
+          <p class="text-gray-500">Host</p>
+        </div>
+      </div>
+    </li>
+    <!-- Add more players here as they join -->
+  </ul>
+</div>
+
+<div class="mt-6 flex items-center justify-end gap-x-6">
+  <%= link_to "Start Game", "#", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+</div>

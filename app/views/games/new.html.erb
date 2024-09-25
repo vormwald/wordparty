@@ -1,37 +1,44 @@
-<h1 class="text-2xl font-bold mb-4">New Game</h1>
-
-<%= form_with(model: @game, local: true, class: "space-y-4") do |form| %>
-  <div>
-    <%= form.label :name, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.text_field :name, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
+<div class="sm:flex sm:items-center">
+  <div class="sm:flex-auto">
+    <h1 class="text-base font-semibold leading-6 text-gray-900">New Game</h1>
+    <p class="mt-2 text-sm text-gray-700">Create a new game by filling out the form below.</p>
   </div>
+</div>
 
-  <div>
-    <%= form.label :party_type, class: "block text-sm font-medium text-gray-700" %>
-    <%= form.select :party_type, options_for_select([['Solo', 'solo'], ['Multiplayer', 'multiplayer']]), {}, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-  </div>
+<div class="mt-8">
+  <%= form_with(model: @game, local: true, class: "space-y-6") do |form| %>
+    <div>
+      <%= form.label :name, class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= form.text_field :name, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+    </div>
 
-  <div>
-    <%= form.label :num_letters, "Number of Letters", class: "block text-sm font-medium text-gray-700" %>
-    <%= form.number_field :num_letters, in: 3..10, step: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-  </div>
+    <div>
+      <%= form.label :party_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= form.select :party_type, options_for_select([['Solo', 'solo'], ['Multiplayer', 'multiplayer']]), {}, class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+    </div>
 
-  <div>
-    <%= form.label :num_rounds, "Number of Rounds", class: "block text-sm font-medium text-gray-700" %>
-    <%= form.number_field :num_rounds, in: 1..10, step: 1, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-  </div>
+    <div>
+      <%= form.label :num_letters, "Number of Letters", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= form.number_field :num_letters, in: 3..10, step: 1, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+    </div>
 
-  <div>
-    <%= form.label :round_time_limit, "Round Time Limit (seconds)", class: "block text-sm font-medium text-gray-700" %>
-    <%= form.select :round_time_limit, 
-                    options_for_select([
-                      ['1 minute', 60],
-                      ['2 minutes', 120],
-                      ['5 minutes', 300]
-                    ]),
-                    {}, 
-                    class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50" %>
-  </div>
+    <div>
+      <%= form.label :num_rounds, "Number of Rounds", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= form.number_field :num_rounds, in: 1..10, step: 1, class: "mt-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+    </div>
 
-  <%= form.submit "Create Game", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
-<% end %>
+    <div>
+      <%= form.label :round_time_limit, "Round Time Limit (seconds)", class: "block text-sm font-medium leading-6 text-gray-900" %>
+      <%= form.select :round_time_limit, 
+                      options_for_select([
+                        ['1 minute', 60],
+                        ['2 minutes', 120],
+                        ['5 minutes', 300]
+                      ]),
+                      {}, 
+                      class: "mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+    </div>
+
+    <%= form.submit "Create Game", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  <% end %>
+</div>

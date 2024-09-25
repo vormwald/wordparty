@@ -9,7 +9,7 @@
 #  num_rounds       :integer          not null
 #  round_time_limit :integer          not null
 #  started_at       :datetime
-#  status           :integer          default(0), not null
+#  status           :integer          default("pending"), not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #

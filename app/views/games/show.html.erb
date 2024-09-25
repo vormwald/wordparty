@@ -1,3 +1,32 @@
-<h1 class="text-2xl font-bold mb-4"><%= @game.name %></h1>
+<div class="sm:flex sm:items-center">
+  <div class="sm:flex-auto">
+    <h1 class="text-base font-semibold leading-6 text-gray-900"><%= @game.name %></h1>
+    <p class="mt-2 text-sm text-gray-700">Game details and current status.</p>
+  </div>
+</div>
 
-<p>This is a blank page for your solo game. Add your game content here.</p>
+<div class="mt-8 border-t border-gray-200 pt-8">
+  <dl class="divide-y divide-gray-200">
+    <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+      <dt class="text-sm font-medium text-gray-500">Game Type</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= @game.party_type.capitalize %></dd>
+    </div>
+    <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+      <dt class="text-sm font-medium text-gray-500">Number of Letters</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= @game.num_letters %></dd>
+    </div>
+    <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+      <dt class="text-sm font-medium text-gray-500">Number of Rounds</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= @game.num_rounds %></dd>
+    </div>
+    <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
+      <dt class="text-sm font-medium text-gray-500">Round Time Limit</dt>
+      <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0"><%= @game.round_time_limit %> seconds</dd>
+    </div>
+  </dl>
+</div>
+
+<div class="mt-6 flex items-center justify-end gap-x-6">
+  <%= link_to "Edit", edit_game_path(@game), class: "text-sm font-semibold leading-6 text-gray-900" %>
+  <%= link_to "Start Game", "#", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+</div>
