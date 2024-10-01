@@ -29,7 +29,7 @@ class Game < ApplicationRecord
   enum status: [ :pending, :in_progress, :completed ]
 
   before_validation :generate_invite_code, on: :create
-  before_validation :set_status, on: :create
+  before_validation :set_default_status, on: :create
 
   private
 
