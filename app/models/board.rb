@@ -24,6 +24,6 @@ class Board < ApplicationRecord
   belongs_to :player
   has_many :guesses, dependent: :destroy
 
-  validates :round_id, uniqueness: { scope: :player_id }
-  validates :player_id, uniqueness: { scope: :round_id }
+  validates :round_id, uniqueness: {scope: :player_id}
+  validates :player_id, uniqueness: {scope: :round_id}
 end

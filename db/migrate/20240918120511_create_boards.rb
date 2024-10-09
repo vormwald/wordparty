@@ -7,6 +7,6 @@ class CreateBoards < ActiveRecord::Migration[7.2]
       t.timestamps
     end
 
-    add_index :boards, [ :round_id, :player_id ], unique: true
+    add_index :boards, [:round_id, :player_id], unique: true
   end
 end
