@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_18_120512) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_01_115442) do
   create_table "boards", force: :cascade do |t|
     t.integer "round_id", null: false
     t.integer "player_id", null: false
