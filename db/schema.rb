@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_09_131342) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_09_131809) do
   create_table "boards", force: :cascade do |t|
     t.integer "round_id", null: false
     t.integer "player_id", null: false
@@ -65,9 +65,27 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_09_131342) do
     t.index ["game_id"], name: "index_rounds_on_game_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
   add_foreign_key "boards", "players"
   add_foreign_key "boards", "rounds"
   add_foreign_key "guesses", "boards"
   add_foreign_key "players", "users"
   add_foreign_key "rounds", "games"
+  add_foreign_key "sessions", "users"
 end
