@@ -38,7 +38,7 @@
           <%= link_to "New Game", new_game_path %>
         </nav>
         <div class="flex flex-1 items-center justify-end gap-x-8">
-          <% if user_signed_in? %>
+          <% if authenticated? %>
             <div class="relative" data-controller="dropdown">
               <button type="button" class="-m-1.5 flex items-center p-1.5" data-action="click->dropdown#toggle">
                 <span class="sr-only">Open user menu</span>
@@ -55,7 +55,7 @@
               </div>
             </div>
           <% else %>
-            <%= link_to "Log in", new_user_session_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
+            <%= link_to "Log in", new_session_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
           <% end %>
         </div>
       </div>
