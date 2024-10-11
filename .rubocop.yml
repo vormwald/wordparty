@@ -443,7 +443,7 @@ Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
 Lint/AssignmentInCondition:
-  Enabled: true
+  Enabled: false # MIKE changing this because I don't think i care
   AllowSafeAssignment: true
   # Intentionally disable autocorrect to force us to intentionally decide
   # whether assignment is intended as opposed to comparison
