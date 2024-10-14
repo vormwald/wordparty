@@ -62,4 +62,6 @@ group :development do
   gem "irb"
   # annotate models / routes etc
   gem "annotate"
+  gem "hotwire-livereload"
 end
+gem "redis"
