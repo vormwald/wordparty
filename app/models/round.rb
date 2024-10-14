@@ -24,5 +24,5 @@ class Round < ApplicationRecord
   has_many :boards, dependent: :destroy
   has_many :players, through: :boards
 
-  validates :word, presence: true, length: { is: -> { game.num_letters } }
+  validates :word, presence: true, length: {is: -> { game.num_letters }}
 end

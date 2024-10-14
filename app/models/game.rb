@@ -22,14 +22,14 @@ class Game < ApplicationRecord
   has_many :boards, through: :rounds
   has_many :players
 
-  validates :round_time_limit, :num_rounds, :num_letters, presence: true, numericality: { greater_than: 0 }
+  validates :round_time_limit, :num_rounds, :num_letters, presence: true, numericality: {greater_than: 0}
   validates :invite_code, presence: true, uniqueness: true
   validates :status, presence: true
 
-  enum status: [ :pending, :in_progress, :completed ]
+  enum status: [:pending, :in_progress, :completed]
 
   before_validation :generate_invite_code, on: :create
-  before_validation :set_status, on: :create
+  before_validation :set_default_status, on: :create
 
   private
 

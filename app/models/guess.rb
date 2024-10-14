@@ -21,7 +21,7 @@
 class Guess < ApplicationRecord
   belongs_to :board
 
-  validates :word, presence: true, length: { is: -> { board.round.game.num_letters } }
+  validates :word, presence: true, length: {is: -> { board.round.game.num_letters }}
   validates :correct_letters, :correct_positions, presence: true
 
   before_validation :score_guess, on: :create

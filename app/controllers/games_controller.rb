@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @games = current_user.games
+    @games = current_user.player.games
   end
 
   def new
@@ -12,10 +12,9 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
 
+    @game.players.build(user: current_user)
     if params[:game][:party_type] == "multiplayer"
-      @game.players.build(user: current_user)
     else
-      @game.players.build(user: current_user)
       @game.started_at = Time.current
       @game.status = :in_progress
     end
