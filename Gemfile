@@ -64,4 +64,3 @@ group :development do
   gem "annotate"
   gem "hotwire-livereload"
 end
-gem "redis"
