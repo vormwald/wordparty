@@ -8,20 +8,25 @@
 #  session_token :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  game_id       :integer
 #  user_id       :integer
 #
 # Indexes
 #
+#  index_players_on_game_id        (game_id)
 #  index_players_on_session_token  (session_token) UNIQUE
 #  index_players_on_user_id        (user_id)
 #
 # Foreign Keys
 #
+#  game_id  (game_id => games.id)
 #  user_id  (user_id => users.id)
 #
 class Player < ApplicationRecord
   belongs_to :user, optional: true
-  belongs_to :game
+  has_many :games_players, dependent: :destroy
+  has_many :games, through: :games_players
+  has_many :boards, dependent: :destroy
 
   validates :name, presence: true
   validates :session_token, uniqueness: true, allow_nil: true

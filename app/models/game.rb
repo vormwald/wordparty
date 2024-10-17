@@ -20,7 +20,8 @@
 class Game < ApplicationRecord
   has_many :rounds, dependent: :destroy
   has_many :boards, through: :rounds
-  has_many :players
+  has_many :games_players, dependent: :destroy
+  has_many :players, through: :games_players
 
   validates :round_time_limit, :num_rounds, :num_letters, presence: true, numericality: {greater_than: 0}
   validates :invite_code, presence: true, uniqueness: true
@@ -30,6 +31,15 @@ class Game < ApplicationRecord
 
   before_validation :generate_invite_code, on: :create
   before_validation :set_default_status, on: :create
+
+  # You might want to add some custom methods here, for example:
+  def start!
+    update!(status: :in_progress, started_at: Time.current)
+  end
+
+  def end!
+    update!(status: :completed, ended_at: Time.current)
+  end
 
   private
 
