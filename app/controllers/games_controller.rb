@@ -1,8 +1,6 @@
 class GamesController < ApplicationController
-  before_action :authenticate_user!
-
   def index
-    @games = current_user.player.games
+    @games = Current.user.games
   end
 
   def new
@@ -12,7 +10,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
 
-    @game.players.build(user: current_user)
+    @game.players.build(user: Current.user)
     if params[:game][:party_type] == "multiplayer"
     else
       @game.started_at = Time.current
@@ -27,11 +25,11 @@ class GamesController < ApplicationController
   end
 
   def show
-    @game = current_user.games.find(params[:id])
+    @game = Current.user.games.find(params[:id])
   end
 
   def lobby
-    @game = current_user.games.find(params[:id])
+    @game = Current.user.games.find(params[:id])
   end
 
   private
