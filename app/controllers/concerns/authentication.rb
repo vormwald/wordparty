@@ -9,6 +9,7 @@ module Authentication
   class_methods do
     def allow_unauthenticated_access(**options)
       skip_before_action :require_authentication, **options
+      before_action :resume_session
     end
   end
 
@@ -28,6 +29,9 @@ module Authentication
 
   def find_session_by_cookie
     Session.find_by(id: cookies.signed[:session_id])
+    if (id = cookies.signed[:session_id])
+      Session.find_by(id: id)
+    end
   end
 
   def request_authentication
