@@ -15,10 +15,18 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :sessions, dependent: :destroy
+  has_one :player
+  accepts_nested_attributes_for :player
+  has_many :games, through: :player
+
+  validates :email_address, presence: true, uniqueness: true
+  validates :password, presence: true, length: {minimum: 6}, if: :password_required?
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
-  has_one :player
-  has_many :games, through: :player
-  has_many :games
+  private
+
+  def password_required?
+    new_record? || password.present?
+  end
 end
