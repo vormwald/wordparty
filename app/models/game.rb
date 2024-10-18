@@ -20,8 +20,8 @@
 class Game < ApplicationRecord
   has_many :rounds, dependent: :destroy
   has_many :boards, through: :rounds
-  has_many :games_players, dependent: :destroy
-  has_many :players, through: :games_players
+  has_many :game_players, dependent: :destroy
+  has_many :players, through: :game_players
 
   validates :round_time_limit, :num_rounds, :num_letters, presence: true, numericality: {greater_than: 0}
   validates :invite_code, presence: true, uniqueness: true
