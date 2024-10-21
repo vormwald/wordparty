@@ -66,73 +66,15 @@ To run specific test files:
 bin/rspec spec/models/game_spec.rb
 ```
 
-## Gameplay
 
-The gameplay flow of WordParty.co can be visualized as follows:
+## Learn more
 
-```mermaid
-stateDiagram-v2
-    [*] --> GameLobby
-    GameLobby --> RoundStart: All players ready
-    RoundStart --> PlayerGuessing
-    PlayerGuessing --> GuessEvaluation
-    GuessEvaluation --> PlayerGuessing: Incorrect guess & attempts left
-    GuessEvaluation --> RoundEnd: Correct guess or no attempts left
-    RoundEnd --> RoundStart: More rounds left
-    RoundEnd --> GameEnd: No more rounds
-    GameEnd --> [*]
-```
+See the docs folder for more information on the database design, user stories, and other relevant documents.
 
-## Database Structure
+* [Database Design](docs/database_design.md)
+* [User Stories](docs/user_stories.md)
 
-The core database structure for WordParty.co is represented in the following Entity-Relationship Diagram:
 
-```mermaid
-erDiagram
-    USER ||--o{ GAME : creates
-    USER ||--o{ PLAYER : "plays as"
-    GAME ||--o{ ROUND : "has many"
-    GAME ||--o{ PLAYER : "has many"
-    ROUND ||--o{ ATTEMPT : "has many"
-    PLAYER ||--o{ ATTEMPT : makes
-    ATTEMPT ||--|| SCORE : "has one"
-
-    USER {
-        int id
-        string email
-        string username
-    }
-    GAME {
-        int id
-        string invite_code
-        int creator_id
-        string status
-    }
-    PLAYER {
-        int id
-        int user_id
-        int game_id
-        string name
-    }
-    ROUND {
-        int id
-        int game_id
-        string word
-        int order
-    }
-    ATTEMPT {
-        int id
-        int player_id
-        int round_id
-        string guess
-    }
-    SCORE {
-        int id
-        int attempt_id
-        int correct_letters
-        int correct_positions
-    }
-```
 
 ## Contributing
 
